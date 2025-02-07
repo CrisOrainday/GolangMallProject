@@ -36,6 +36,7 @@ type Config struct {
 	MySQL    MySQL    `yaml:"mysql"`
 	Redis    Redis    `yaml:"redis"`
 	Registry Registry `yaml:"registry"`
+	Nats	 Nats	  `yaml:"nats"`
 }
 
 type MySQL struct {
@@ -47,6 +48,10 @@ type Redis struct {
 	Username string `yaml:"username"`
 	Password string `yaml:"password"`
 	DB       int    `yaml:"db"`
+}
+
+type Nats struct {
+	Address string `yaml:"address"`
 }
 
 type Kitex struct {
