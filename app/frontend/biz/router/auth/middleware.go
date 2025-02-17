@@ -44,3 +44,33 @@ func _registerMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _sendphonecodeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _loginwithphonecodeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _registerwithphonecodeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _loginregisterwithphonecodeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _loginregisterwithemailcodeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _sendemailcodeMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}

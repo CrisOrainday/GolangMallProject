@@ -85,3 +85,43 @@ func Logout(ctx context.Context, c *app.RequestContext) {
 
 	c.Redirect(consts.StatusFound, []byte(redirect))
 }
+
+// SendEmailCode .
+// @router /auth/send-email-code [POST]
+func SendEmailCode(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req auth.SendEmailCodeReq
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+
+	resp, err := service.NewSendEmailCodeService(ctx, c).Run(&req)
+
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+	utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
+}
+
+// LoginRegisterWithEmailCode .
+// @router /auth/login-register-emailcode [POST]
+func LoginRegisterWithEmailCode(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req auth.LoginRegisterWithEmailCodeReq
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+
+	resp, err := service.NewLoginRegisterWithEmailCodeService(ctx, c).Run(&req)
+
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+	utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
+}

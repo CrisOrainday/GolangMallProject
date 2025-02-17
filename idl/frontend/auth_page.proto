@@ -19,6 +19,21 @@ message LoginReq {
   string next = 3 [(api.query) = "next"];
 }
 
+message SendEmailCodeReq {
+  string email = 1; // 用户的邮箱
+}
+
+message SendEmailCodeResp {
+  bool success = 1; // 是否发送成功
+  string message = 2; // 发送结果消息
+}
+
+message LoginRegisterWithEmailCodeReq {
+  string email = 1;      // 用户手机号
+  string verify_code = 2;   // 短信验证码
+  string password = 3;   // 用户密码
+}
+
 service AuthService {
   rpc register(RegisterReq) returns (common.Empty) {
     option (api.post) = "/auth/register";
@@ -28,5 +43,11 @@ service AuthService {
   }
   rpc logout(common.Empty) returns (common.Empty) {
     option (api.post) = "/auth/logout";
+  }
+  rpc SendEmailCode(SendEmailCodeReq) returns (SendEmailCodeResp) {
+    option (api.post) = '/auth/send-email-code';
+  }
+  rpc LoginRegisterWithEmailCode(LoginRegisterWithEmailCodeReq) returns (common.Empty) {
+    option (api.post) = "/auth/login-register-emailcode";
   }
 }

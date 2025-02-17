@@ -24,3 +24,12 @@ func Login(ctx context.Context, req *user.LoginReq, callOptions ...callopt.Optio
 	}
 	return resp, nil
 }
+
+func LoginRegister(ctx context.Context, req *user.LoginReq, callOptions ...callopt.Option) (resp *user.LoginResp, err error) {
+	resp, err = defaultClient.LoginRegister(ctx, req, callOptions...)
+	if err != nil {
+		klog.CtxErrorf(ctx, "LoginRegister call failed,err =%+v", err)
+		return nil, err
+	}
+	return resp, nil
+}

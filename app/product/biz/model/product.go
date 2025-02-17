@@ -58,7 +58,10 @@ type CachedProductQuery struct {
 }
 
 func (c CachedProductQuery) GetById(productId int) (product Product, err error) {
+	// cacheKey 是通过 prefix、"product_by_id" 和 productId 组成的缓存键。
+	// 每个缓存键都唯一标识一个产品的 ID。
 	cacheKey := fmt.Sprintf("%s_%s_%d", c.prefix, "product_by_id", productId)
+	// 使用 cacheClient.Get 方法从 Redis 中获取数据。
 	cachedResult := c.cacheClient.Get(c.productQuery.ctx, cacheKey)
 
 	err = func() error {
